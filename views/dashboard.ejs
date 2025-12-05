@@ -1,0 +1,30 @@
+<!-- dashboard.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+</head>
+<body>
+<h2>Bem-vindo, <%= user.nome %></h2>
+<a href="/paciente/novo">Novo Paciente</a>
+<h3>Pacientes</h3>
+<table border="1">
+<tr><th>Nome</th><th>Sexo</th><th>Nascimento</th><th>Status</th><th>Observação</th><th>Ação</th></tr>
+<% pacientes.forEach(p => { %>
+<tr>
+<td><%= p.nome %></td>
+<td><%= p.sexo %></td>
+<td><%= p.nascimento %></td>
+<td><%= p.status %></td>
+<td><%= p.observacao %></td>
+<td>
+<% if (p.status !== 'Alta') { %>
+<a href="/paciente/<%= p.id %>/alta">Dar Alta</a>
+<% } %>
+<a href="/paciente/<%= p.id %>/editar">Editar</a>
+</td>
+</tr>
+<% }) %>
+</table>
+</body>
+</html>
