@@ -9,6 +9,14 @@
 
 <form method="POST" action="/paciente/<%= paciente.id %>/editar">
 
+<label>CPF:</label>
+<input type="text" name="cpf" value="<%= paciente.cpf %>" required>
+<br>
+
+<label>SUS:</label>
+<input type="text" name="sus" value="<%= paciente.sus %>" required>
+<br>
+
 <label>Nome:</label>
 <input type="text" name="nome" value="<%= paciente.nome %>" required>
 <br>

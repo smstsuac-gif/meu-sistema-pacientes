@@ -39,6 +39,8 @@ db.run(`CREATE TABLE IF NOT EXISTS usuarios (
 db.run(`CREATE TABLE IF NOT EXISTS pacientes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
+	cpf TEXT UNIQUE,
+	sus TEXT UNIQUE,
     sexo TEXT,
     nascimento TEXT,
     status TEXT,
@@ -160,12 +162,18 @@ app.get('/paciente/novo', auth, (req, res) => {
 });
 
 app.post('/paciente/novo', auth, (req, res) => {
-    const { nome, sexo, nascimento, observacao } = req.body;
+    const { cpf, sus, nome, sexo, nascimento, observacao } = req.body;
 
     db.run(
-        "INSERT INTO pacientes (nome, sexo, nascimento, status, observacao) VALUES (?,?,?,?,?)",
-        [nome, sexo, nascimento, 'Em acompanhamento', observacao],
-        () => res.redirect('/dashboard')
+        "INSERT INTO pacientes (cpf, sus, nome, sexo, nascimento, status, observacao) VALUES (?,?,?,?,?,?,?)",
+        [cpf, sus, nome, sexo, nascimento, 'Em acompanhamento', observacao],
+        (err) => {
+            if (err) {
+                console.log("Erro ao inserir paciente:", err);
+                return res.send("Erro ao salvar paciente: " + err.message);
+            }
+            res.redirect('/dashboard');
+        }
     );
 });
 
@@ -182,13 +190,13 @@ app.get('/paciente/:id/editar', auth, (req, res) => {
 });
 
 app.post('/paciente/:id/editar', auth, (req, res) => {
-    const { nome, sexo, nascimento, observacao, status } = req.body;
+    const { cpf, sus, nome, sexo, nascimento, observacao, status } = req.body;
 
     db.run(
         `UPDATE pacientes 
-         SET nome=?, sexo=?, nascimento=?, observacao=?, status=?
+         SET cpf=?, sus=?, nome=?, sexo=?, nascimento=?, observacao=?, status=?
          WHERE id=?`,
-        [nome, sexo, nascimento, observacao, status, req.params.id],
+        [cpf, sus, nome, sexo, nascimento, observacao, status, req.params.id],
         () => res.redirect('/dashboard')
     );
 });

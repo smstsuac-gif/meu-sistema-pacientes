@@ -7,12 +7,15 @@
 <body>
 <h2>Bem-vindo, <%= user.nome %></h2>
 <a href="/paciente/novo">Novo Paciente</a>
+<br>
 <a href="/criar-usuario">Novo usuario</a>
 <h3>Pacientes</h3>
 <table border="1">
-<tr><th>Nome</th><th>Sexo</th><th>Nascimento</th><th>Status</th><th>Observação</th><th>Ação</th></tr>
+<tr><th>Cpf</th><th>Sus</th><th>Nome</th><th>Sexo</th><th>Nascimento</th><th>Status</th><th>Observação</th><th>Ação</th></tr>
 <% pacientes.forEach(p => { %>
 <tr>
+<td><%= p.cpf %></td>
+<td><%= p.sus %></td>
 <td><%= p.nome %></td>
 <td><%= p.sexo %></td>
 <td><%= p.nascimento %></td>

@@ -7,6 +7,12 @@
 <body>
 <h2>Novo Paciente</h2>
 <form method="POST" action="/paciente/novo">
+<label>CPF:</label>
+<input type="text" name="cpf" required>
+<br>
+<label>SUS:</label>
+<input type="text" name="sus" required>
+<br>
 <label>Nome:</label>
 <input type="text" name="nome" required>
 <br>
@@ -20,6 +26,8 @@
 <textarea name="observacao"></textarea>
 <br>
 <button type="submit">Salvar</button>
+<br>
+<a href="/dashboard/">Voltar</a>
 </form>
 </body>
 </html>
