@@ -1,0 +1,26 @@
+<!-- user.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novo Usuário</title>
+</head>
+<body>
+    <h2>Novo Usuário</h2>
+
+    <form method="POST" action="/criar-usuario">
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
+        <br>
+
+        <label>Usuário (login):</label>
+        <input type="text" name="usuario" required>
+        <br>
+
+        <label>Senha:</label>
+        <input type="password" name="senha" required>
+        <br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
